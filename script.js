@@ -2,20 +2,10 @@
 const pokemonContainer = document.getElementById('pokemon-container');
 const searchInput = document.getElementById('search');
 const sortSelect = document.getElementById('sort');
-const loader = document.getElementById('loader');
 const paginationContainer = document.getElementById('pagination');
 const modal = document.getElementById('pokemon-modal');
 const modalContent = document.getElementById('modal-details');
 const closeModal = document.querySelector('.close');
-
-// Lottie loader animation setup
-lottie.loadAnimation({
-    container: loader,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://assets5.lottiefiles.com/packages/lf20_kxsd2ytq.json'
-});
 
 // Pokemon per page
 let pokemonData = [];
