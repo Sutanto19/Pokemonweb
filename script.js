@@ -2,10 +2,20 @@
 const pokemonContainer = document.getElementById('pokemon-container');
 const searchInput = document.getElementById('search');
 const sortSelect = document.getElementById('sort');
+const loader = document.getElementById('loader');
 const paginationContainer = document.getElementById('pagination');
 const modal = document.getElementById('pokemon-modal');
 const modalContent = document.getElementById('modal-details');
 const closeModal = document.querySelector('.close');
+
+// Lottie loader animation setup
+lottie.loadAnimation({
+    container: loader,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://assets5.lottiefiles.com/packages/lf20_kxsd2ytq.json'
+});
 
 // Pokemon per page
 let pokemonData = [];
@@ -14,6 +24,7 @@ let currentPage = 1;
 
 // Fetch Pokémon Data
 async function fetchPokemon() {
+    loader.style.display = 'block';
     try {
         for (let i = 1; i <= 150; i++) {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
@@ -24,6 +35,9 @@ async function fetchPokemon() {
         setupPagination(pokemonData.length, itemsPerPage);
     } catch (error) {
         console.error('Error fetching Pokémon data:', error);
+    } finally {
+        loader.style.display = 'none';
+    }
 }
 
 function setupPagination(totalItems, itemsPerPage) {
