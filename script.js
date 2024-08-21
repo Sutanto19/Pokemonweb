@@ -14,7 +14,6 @@ let currentPage = 1;
 
 // Fetch Pokémon Data
 async function fetchPokemon() {
-    loader.style.display = 'block';
     try {
         for (let i = 1; i <= 150; i++) {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
@@ -25,9 +24,6 @@ async function fetchPokemon() {
         setupPagination(pokemonData.length, itemsPerPage);
     } catch (error) {
         console.error('Error fetching Pokémon data:', error);
-    } finally {
-        loader.style.display = 'none';
-    }
 }
 
 function setupPagination(totalItems, itemsPerPage) {
